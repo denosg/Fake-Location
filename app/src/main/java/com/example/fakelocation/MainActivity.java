@@ -1,19 +1,12 @@
 package com.example.fakelocation;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-//TODO: when user presses the notification it should open MapsActivity.class
 
 public class MainActivity extends AppCompatActivity {
 

@@ -25,7 +25,6 @@
                 android:value="" />
         </activity>
         <!--
-             TODO: Before you run your application, you need a Google Maps API key.
 
              To get one, follow the directions here:
 
@@ -40,6 +39,7 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />

@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Address;
@@ -184,19 +186,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Toast.makeText(this, "Location saved", Toast.LENGTH_SHORT).show();
 
         //adaugat 27.10.2022
+        //sends the user a notification regarding the location chosen
         notificationManager = NotificationManagerCompat.from(this);
 
         String message = (String) MainActivity.addressTextView.getText();
 
-        Notification notification = new NotificationCompat.Builder(this, NotiForYou.CHANNEL_1_ID)
+        //when user clicks on notification, it opens MapsActivity.class to change it
+        Intent intent = new Intent(this, MapsActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotiForYou.CHANNEL_1_ID)
                 .setSmallIcon(R.drawable.ic_one)
                 .setContentTitle("Fake Location")
                 .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
-                .build();
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        notificationManager.notify(1, notification);
+        notificationManager.notify(1, builder.build());
         //pana aici
     }
     //fake location method implementation
